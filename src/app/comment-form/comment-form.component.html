@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="comment-form">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group" [ngClass]="{ 'has-error': (form.controls.name.touched || form.controls.name.dirty)  && form.controls.name.invalid }">
+                    <label class="control-label" for="name">Имя*:</label>
+                    <input type="text" value="" name="name" id="name" formControlName="name" class="form-control" />
+                    <div class="help-block" *ngIf="(form.controls.name.touched || form.controls.name.dirty)  && form.controls.name.invalid">
+                        Поле обязательно для заполнения
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="phone">Телефон:</label>
+                    <input type="number" value="" name="phone" id="phone" formControlName="phone" class="form-control" />
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': (form.controls.message.touched || form.controls.message.dirty) && form.controls.message.invalid }">
+                    <label class="control-label" for="message">Сообщение*:</label>
+                    <textarea rows="3" cols="5" name="message" id="message" (input)="onKey($event)" formControlName="message" class="form-control"></textarea>
+
+                    <div class="help-block">
+                        {{messageInputInformation}}
+                    </div>
+
+                    <div class="help-block" *ngIf="(form.controls.message.touched || form.controls.message.dirty) && form.controls.message.errors && form.controls.message.errors.required">
+                        Поле обязательно для заполнения
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-default" [disabled]="form.invalid">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>

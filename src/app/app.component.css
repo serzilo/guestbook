@@ -1,0 +1,8 @@
+.main {
+    margin: 0 auto;
+    min-height: 100vh;
+    max-width: 800px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background: #fff;
+}

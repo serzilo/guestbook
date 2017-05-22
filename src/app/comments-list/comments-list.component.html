@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12">
+        <div *ngFor="let comment of (comments | sortByDate)" class="comment-item clearfix">
+            <span class="pull-right">{{comment.date | formatDate}}</span>
+            <strong>{{comment.name}}</strong> написал:
+            <p class="comment-text bg-info" *ngIf="comment.id !== edit">{{comment.message}}</p>
+
+            <div *ngIf="comment.id === edit" class="comment-edit-form">
+                <form [formGroup]="form" (ngSubmit)="saveComment(comment.id)">
+                    <div class="form-group" [ngClass]="{ 'has-error': (form.controls.message.touched || form.controls.message.dirty)  && form.controls.message.invalid }">
+                        <textarea rows="3" cols="5" name="message" id="message" (input)="onKey($event)" formControlName="message" class="form-control">{{comment.message}}</textarea>
+
+                        <div class="help-block">
+                            {{messageInputInformation}}
+                        </div>
+
+                        <div class="help-block" *ngIf="(form.controls.message.touched || form.controls.message.dirty) && form.controls.message.errors && form.controls.message.errors.required">
+                            Поле обязательно для заполнения
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" [disabled]="form.invalid">Сохранить</button>
+                    <button type="button" class="btn btn-link" (click)="cancelEditComment()">Отмена</button>
+                </form>
+            </div>
+
+            <p class="comment-phone" *ngIf="comment.phone">Телефон: <span class="text-success">{{comment.phone}}</span></p>
+
+            <p class="comment-tools" *ngIf="comment.id !== edit">
+                <button type="button" class="btn btn-default" (click)="editComment(comment.id)">Редактировать</button>
+                <button type="button" class="btn btn-default" (click)="deleteComment(comment.id)">Удалить</button>
+            </p>
+        </div>
+    </div>
+</div>

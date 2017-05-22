@@ -1,0 +1,16 @@
+.comment-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+}
+
+.comment-text {
+    padding: 15px;
+    margin: 10px 0 0;
+    word-wrap: break-word;
+}
+
+.comment-phone,
+.comment-tools,
+.comment-edit-form {
+    margin: 15px 0 0;
+}

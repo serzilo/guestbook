@@ -1,0 +1,4 @@
+<div class="main">
+    <app-comments-list [comments]="comments" (commentDeleted)="handleCommentDeleted($event)" (commentUpdated)="handleCommentUpdated($event)"></app-comments-list>
+    <app-comment-form (commentAdded)="handleCommentAdded($event)"></app-comment-form>
+</div>
